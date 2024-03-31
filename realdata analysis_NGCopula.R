@@ -3,12 +3,10 @@
 
 ## Real data example
 
-## (1) dependence measure: Kendall's tau defined on the half-plane
-## (2) estimation 
 
 ## Written by Rosy Oh
 
-## Last updated 25 Jan 2024
+## Last updated 28 Mar 2024
 
 ################################################################################
 
