@@ -147,49 +147,5 @@ for(j in 1:nrow(param.set)){
 }
 
 
-#-----------------------------------------------------------------------
-## Figure2 
-
-# scenario 1 ~ scenario 6
-# pdf("tail_logS_sim1.pdf", width=5, height=4)
-par(mfrow=c(1,1), mar=c(4,4,2,2))
-
-d_logSv = density(log(ng_Sv[[1]]), width=0.6)
-idx1 = d_logSv$x>16 & d_logSv$x<18 
-mycol= hcl.colors(6)
-plot(d_logSv$x[idx1], d_logSv$y[idx1], type="l", col=mycol[1],
-     xlim=c(16.5, 17.2), ylim=c(0,2),  lwd=2,
-     ylab="Density", xlab="Total loss (log)")
-for(i in 2:6){
-  d_logSv2 = density(log(ng_Sv[[i]]), width=0.6)
-  idx2 = d_logSv2$x>16 & d_logSv2$x<18 
-  lines(d_logSv2$x[idx2], d_logSv2$y[idx2], lty=i, col=mycol[i], lwd=2)
-}
-# dev.off()
-
-
-# scenario 7 ~ scenario 12
-# pdf("tail_logS_sim2.pdf", width=5, height=4)
-par(mfrow=c(1,1), mar=c(4,4,2,2))
-
-d_logSv = density(log(ng_Sv[[7]]), width=0.6)
-idx1 = d_logSv$x>17 & d_logSv$x<18 
-mycol= hcl.colors(6)
-plot(d_logSv$x[idx1], d_logSv$y[idx1], type="l", col=mycol[1],
-     xlim=c(17.2, 18), ylim=c(0,2), lwd=2,
-     ylab="Density", xlab="Total loss (log)")
-for(i in 8:12){
-  d_logSv2 = density(log(ng_Sv[[i]]), width=0.6)
-  idx2 = d_logSv2$x>17 & d_logSv2$x<18 
-  lines(d_logSv2$x[idx2], d_logSv2$y[idx2], lty=i, col=mycol[i-6], lwd=2)
-}
-legend("topright", 
-       c(expression(paste(theta,"=0.1  ")),expression(paste(theta,"=0.5  ")),
-         expression(paste(theta,"=1 ")),expression(paste(theta,"=5 ")),
-         expression(paste(theta,"=10 ")),expression(paste(theta,"=30 ")) ),
-       lty=c(1:6), col=hcl.colors(6), lwd=2)
-# dev.off()
-
-
 
 

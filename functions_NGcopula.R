@@ -561,38 +561,3 @@ Sim_NG_est = function(Xmat, param, B){
 }
 
 
-
-# par =(beta1, beta2, r, psi, k, extra)
-summary_tab = function(fit, d1, extra, cop, n=nrow(summed)){
-  
-  if(cop == "gs"){
-    tmp = atan(fit$par[length(fit$par)])*2/pi
-    tmp_d = 2/pi/(1+fit$par[length(fit$par)]^2)
-  }else if(cop=="joe"){
-    tmp = exp(fit$par[length(fit$par)])+1
-    tmp_d =exp(fit$par[length(fit$par)]) 
-  }else{
-
-    tmp = exp(fit$par[length(fit$par)])
-    tmp_d =exp(fit$par[length(fit$par)])
-  }
-  
-  est = c(fit$par[1:(2*d1)], 
-          exp(fit$par[(2*d1+1):(length(fit$par)-1)]),tmp)
-  trs = c(rep(1,2*d1), 
-          exp(fit$par[(2*d1+1):(length(fit$par)-1)]),tmp_d)
-  
-  se = sqrt(diag(solve(-fit$hessian)))*trs
-  loglik = fit$value
-  aic = -2*loglik + 2*length(est)
-  bic = -2*loglik + log(n)*length(est)
-  est_tab = round(data.frame(est=est, se=se), 4)
-  row.names(est_tab)=c(paste("N:",names(coef(mo1))), 
-                       paste("M:",names(coef(mo2))), 
-                       "r","psi","k", extra)
-  gof = c(loglik, aic, bic)
-  names(gof) = c("loglik","AIC", "BIC")
-
-  result = list(est_tab=est_tab, gof=gof)
-  return(result)
-}
